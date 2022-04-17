@@ -5,14 +5,14 @@ const bcrypt = require('bcryptjs');
 // Json web token
 const jsonWebToken = require('jsonwebtoken');
 // Data model
-const User = require('../models/UserModel');
+const User = require('../models/User/UserModel');
 // @desc Register a new user
 // @route /api/users
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
     // Destruct fields from request
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
         res.status(400);
         throw new Error('Include all fields');
     }
@@ -26,11 +26,10 @@ const registerUser = asyncHandler(async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     // Create user
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = await User.create({ email, password: hashedPassword });
     if (user) {
         res.status(201).json({ 
             _id: user._id,
-            name: user.name,
             email: user.email,
             token: generateToken(user._id)
         });
@@ -52,7 +51,6 @@ const loginUser = asyncHandler(async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
         res.status(200).json({
             _id: user._id,
-            name: user.name,
             email: user.email,
             token: generateToken(user._id)
         })
@@ -68,8 +66,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access private
 const getUserData = asyncHandler(async (req, res) => {
     const user = { 
-        id: req.user.id, 
-        name: req.user.name,
+        id: req.user.id,
         email: req.user.email,
     };
     res.status(200).json(user);

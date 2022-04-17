@@ -21,10 +21,18 @@ app.get('/', (request, response) => {
     response.send('hello');
 })
 // Routes
-// Set specified functions from UserRoutes to path /api/users
-// /api/users is connected to UserRoutes file.
+
+// Set specified functions from routes to path /api/
+// /api/users is connected to UserRoutes
 app.use('/api/users', require('./routes/UserRoutes'));
+
+// /api/org is connected to OrganizationRoutes
+app.use('/api/org', require('./routes/OrganizationRoutes'));
+
+// Middleware functions
 // Add error handler to application
 app.use(handleError);
+
+
 // Bind express to given port.
 app.listen(PORT, () => console.log(`Server started. Port: ${PORT}`));
