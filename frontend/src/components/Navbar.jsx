@@ -1,5 +1,5 @@
 // Icons
-import { FaSignInAlt, FaSignOutAlt, FaUser, FaHandsHelping } from 'react-icons/fa'
+import { FaUserCog, FaSignOutAlt, FaUser, FaHandsHelping } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser, reset } from '../features/auth/AuthSlice'
@@ -46,7 +46,16 @@ function Navbar() {
             <div className='flex-2 justify-end px-5 mx-2 absolute right-0'>
               <div className='flex'>
                   {user ? (
-                    <button onClick={onLogout} className='btn btn-ghost btn-sm rounder-btn'>Logout</button>
+                    <>
+                        <div className='border-r border-white px-5'>
+                            <Link to='/settings' className='btn btn-ghost btn-md rounder-btn'>
+                                <FaUserCog className='text-3xl'></FaUserCog>
+                            </Link>
+                        </div>
+                        <button onClick={onLogout} className='btn btn-ghost btn-md rounder-btn ml-5'>
+                            <FaSignOutAlt className='text-2xl'></FaSignOutAlt>
+                        </button>
+                    </>
                   ) : (
                   <>
                     <Link to='/login' className='btn btn-ghost btn-sm rounder-btn'>

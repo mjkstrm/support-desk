@@ -20,6 +20,6 @@ router.delete('/:id', protect, deleteOrganization);
 // Get single org
 router.get('/:id', protect, getOrganization);
 // Get users organizations
-router.get('/:id/all', protect, getUserOrganizations);
+router.get('/user/all/', protect, getUserOrganizations);
 // Export the router
 module.exports = router;

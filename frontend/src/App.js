@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Settings from './pages/Settings';
 // Components
 import Navbar from './components/Navbar';
 
@@ -19,6 +20,7 @@ function App() {
               <Route path='/' element={<Home></Home>}></Route>
               <Route path='/login' element={<Login></Login>}></Route>
               <Route path='/register' element={<Register></Register>}></Route>
+              <Route path='/settings' element={<Settings></Settings>}></Route>
             </Routes>
           </main>
         </div>

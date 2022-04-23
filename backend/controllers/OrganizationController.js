@@ -3,12 +3,13 @@ const asyncHandler = require('express-async-handler');
 // Data models
 const Organization = require('../models/Organization/OrganizationModel');
 const User = require('../models/User/UserModel');
+const UserOrganization = require('../models/User/UserOrganizationsModel');
 
 // @desc Create a new organization
 // @route /api/org
 // @access Private
 const insertOrganization = asyncHandler( async (req, res) => {
-    // Get user from json web token
+    // Request user set in authentication middleware, parsed from json web token
     const user = await User.findById(req.user.id);
     if (!user) {
         res.status(401);
@@ -22,6 +23,8 @@ const insertOrganization = asyncHandler( async (req, res) => {
     }
     // Create a new organization
     const org = await Organization.create({ name, description, owner: req.user.id });
+    // Add organization to list of users orgs
+    await UserOrganization.create({ org_id: org._id, user_id: req.user.id });
     // Return object in response
     res.status(201).json(org);
 });
@@ -30,7 +33,7 @@ const insertOrganization = asyncHandler( async (req, res) => {
 // @route /api/org
 // @access Private
 const deleteOrganization = asyncHandler( async (req, res) => {
-    // Get user from json web token
+    // Request user set in authentication middleware, parsed from json web token
     const user = await User.findById(req.user.id);
     if (!user) {
         res.status(401);
@@ -53,7 +56,7 @@ const deleteOrganization = asyncHandler( async (req, res) => {
 // @route /api/org
 // @access Private
 const updateOrganization = asyncHandler( async (req, res) => {
-    // Get user from json web token
+    // Request user set in authentication middleware, parsed from json web token
     const user = await User.findById(req.user.id);
     if (!user) {
         res.status(401);
@@ -78,7 +81,14 @@ const getOrganization = asyncHandler( async (req, res) => {
 });
 
 const getUserOrganizations = asyncHandler( async (req, res) => {
-    res.send('Get user orgs')
+    // Request user set in authentication middleware, parsed from json web token
+    const user = await User.findById(req.user.id);
+    if (!user) {
+        res.status(401);
+        throw new Error('User not found.');
+    }
+    const organizations = await Organization.find({ user_id: req.user.id });
+    res.status(200).json(organizations);
 });
 
 module.exports = { 
