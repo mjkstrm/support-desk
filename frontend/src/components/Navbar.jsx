@@ -1,5 +1,5 @@
 // Icons
-import { FaUserCog, FaSignOutAlt, FaUser, FaHandsHelping } from 'react-icons/fa'
+import { FaUserCog, FaSignOutAlt } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser, reset } from '../features/auth/AuthSlice'
@@ -16,12 +16,12 @@ function Navbar() {
         navigate('/');
     }
   return (
-    <nav className="navbar shadow-xl bg-cyan-900 text-primary-content">
+    <nav className="navbar shadow-md shadow-indigo-500/50 bg-slate-900 text-primary-content">
         <div className='container'>
             <div className='flex-none justify-start px-5 border-r border-white'>
                 <Link to='/' className='text-xl font-bold align-middle'>
-                    Support-Desk
-                </Link>
+                    Support-Desk            
+                </Link>     
             </div>
 
             <div className='flex-1 px-5 mx-2'>

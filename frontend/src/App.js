@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className='flex flex-col h-screen bg-cyan-900'>
+        <div className='flex flex-col h-screen bg-slate-900'>
           <Navbar></Navbar>
           <main className='container mx-auto'>
             <Routes>

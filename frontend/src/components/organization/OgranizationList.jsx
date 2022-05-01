@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 // Org slice
-import { getUserOrganizations } from '../features/org/OrgSlice'
+import { getUserOrganizations } from '../../features/org/OrgSlice'
 // Components
 import OrganizationItem from './OrganizationItem';
 
