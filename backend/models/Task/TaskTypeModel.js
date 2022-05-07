@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const taskTypeSchema = mongoose.Schema({
     name: { 
-        type: string 
+        type: String
     }
 })
 

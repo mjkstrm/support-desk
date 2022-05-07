@@ -5,7 +5,8 @@ const {
     insertTask,
     updateTask,
     deleteTask,
-    getTasks
+    getTasks,
+    getAssignedTasks
 } = require('../controllers/TaskController');
 // Add authorization middleware
 const protect = require('../middleware/Auth');
@@ -13,6 +14,7 @@ const protect = require('../middleware/Auth');
 router.post('/', protect, insertTask);
 router.put('/:id', protect, updateTask);
 router.delete('/:id', protect, deleteTask);
-router.get('/org/all', protect, getTasks);
+router.get('/user/all', protect, getTasks);
+router.get('/user/assigned', protect, getAssignedTasks);
 // Export the router
 module.exports = router;

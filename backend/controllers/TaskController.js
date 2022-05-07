@@ -31,17 +31,24 @@ const deleteTask = asyncHandler( async (req, res) => {
 })
 
 // @desc Get all tasks for an organization
-// @route /api/ticket/org/all
+// @route /api/ticket/user/all
 // @access private
 const getTasks = asyncHandler( async (req, res) => {
     res.send('Get tasks')
 })
 
-// TODO: Get assigned tasks
+// @desc Get all tasks for assigned for current user
+// @route /api/ticket/user/assigned
+// @access private
+const getAssignedTasks = asyncHandler( async (req, res) => {
+    res.send('Get assigned tasks');
+})
+
 
 module.exports = {
     insertTask,
     updateTask,
     deleteTask,
-    getTasks
+    getTasks,
+    getAssignedTasks
 };

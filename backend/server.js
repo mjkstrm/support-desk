@@ -28,7 +28,7 @@ app.use('/api/users', require('./routes/UserRoutes'));
 // /api/org is connected to OrganizationRoutes
 app.use('/api/org', require('./routes/OrganizationRoutes'));
 // /api/ticket is connected to TaskRoutes
-app.use('api/task', require('./routes/TaskRoutes'));
+app.use('/api/task', require('./routes/TaskRoutes'));
 
 // Middleware functions
 // Add error handler to application

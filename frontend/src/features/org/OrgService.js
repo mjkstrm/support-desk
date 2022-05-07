@@ -14,7 +14,6 @@ const getUserOrganizations = async(userData) => {
 }
 // Insert new organization
 const insertOrganization = async(userData, data) => {
-    console.log('blaa');
     const config = {
         headers: {
             'Authorization': 'Bearer ' + userData.token
