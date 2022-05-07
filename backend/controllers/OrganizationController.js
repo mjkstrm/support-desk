@@ -1,6 +1,6 @@
 // Handles exceptions in async functions automatically. Passes the errors to our custom error handler
 const asyncHandler = require('express-async-handler');
-// Data models
+// Required data models
 const Organization = require('../models/Organization/OrganizationModel');
 const User = require('../models/User/UserModel');
 const UserOrganization = require('../models/User/UserOrganizationsModel');
@@ -75,11 +75,14 @@ const updateOrganization = asyncHandler( async (req, res) => {
     res.status(200).json(updatedOrg);
 });
 
+// TODO
 const getOrganization = asyncHandler( async (req, res) => {
     res.send('Get org');
     // req.params.id
 });
 
+// @desc Get orgs linked to calling user
+// @route /api/org/user/all
 const getUserOrganizations = asyncHandler( async (req, res) => {
     // Request user set in authentication middleware, parsed from json web token
     const user = await User.findById(req.user.id);
